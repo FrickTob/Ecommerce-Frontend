@@ -1,0 +1,42 @@
+.productsPage {
+    display: flex;
+    background-color: whitesmoke;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 80px;
+    justify-content: center;
+    align-items: center;
+}
+
+.productGrid {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 70%;
+    gap: 10px 10px;
+    justify-items: center;
+}
+.productGridItem {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+}
+
+.imageBox {
+    overflow: hidden;
+    border-radius: 20px;
+    width: 100%;
+    aspect-ratio: 1;
+}
+.imageBox img {
+    justify-self: center;
+    align-self: center;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit:cover;
+}
+
+.productGridItem img:hover {
+    scale: 1.1;
+}

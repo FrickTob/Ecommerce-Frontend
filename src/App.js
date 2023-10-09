@@ -1,13 +1,13 @@
-import './styles/App.css';
 import Header from './components/Header'
 import Footer from './components/Footer';
-import ProductDetailedPage from './pages/ProductDetailedPage';
-import StoreHomePage from './pages/StoreHomePage'
+import ShopDetailedPage from './pages/ShopDetailedPage';
+import ShopHomePage from './pages/ShopHomePage'
 import {
   BrowserRouter as Router,
   Route,
   Routes,
 } from "react-router-dom"
+import ShopProductsPage from './pages/ShopProductsPage';
 
 function App() {
   return (
@@ -15,8 +15,9 @@ function App() {
     <Header />
     <Router>
       <Routes>
-        <Route path="/" exact element={<StoreHomePage />} />
-        <Route path="/item/:id" element={<ProductDetailedPage />} />
+        <Route path="/" exact element={<ShopHomePage />} />
+        <Route path="/products" element={<ShopProductsPage />} />
+        <Route path="/item/:id" element={<ShopDetailedPage />} />
       </Routes>
     </Router>
     <Footer />
