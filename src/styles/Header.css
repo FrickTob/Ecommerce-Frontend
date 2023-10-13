@@ -1,0 +1,21 @@
+.topHeaderRow {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.middleHeader {
+    left: 50%;
+    right: 50%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middleHeader * {
+    margin-left: 10px;
+    margin-right: 10px;
+}

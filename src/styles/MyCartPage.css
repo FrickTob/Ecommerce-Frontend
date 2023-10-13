@@ -1,0 +1,14 @@
+.myCartPage {
+    display: flex;
+    justify-content: center;
+}
+.cartBox {
+    width: 50%;
+    min-height: 40%;
+    background-color: lightblue;
+}
+.subtotalBox {
+    width: 30%;
+    min-height: 20%;
+    background-color: coral;
+}

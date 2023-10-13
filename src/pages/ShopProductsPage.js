@@ -15,7 +15,6 @@ const ShopProductsPage = () => {
     let response = await fetch('/api/store/')
     let data = await response.json()
     setProducts(data)
-    console.log(data[0]?.product_image)
   }
 
 
