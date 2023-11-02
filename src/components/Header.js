@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import cartLogo from '../media/cart.svg'
+import storeLogo from '../media/redhead.png'
 import background from '../media/homepagebackground.jpg'
 
 
@@ -35,7 +36,7 @@ const Header = ({cartStuff}) => {
   return (
     <div className='header'>
       <div className='topHeaderRow'>
-        <Link className='logoHeaderBox' to={'/'}>Logo here</Link>
+        <Link className='logoHeaderBox' to={'/'}><img src={storeLogo}/></Link>
         <div className='middleHeader'>
           <Link to={'/products'}>All Products</Link>
           <Link to={'/about'}>About</Link>
