@@ -1,9 +1,8 @@
 .productsPage {
     display: flex;
-    background-color: whitesmoke;
     flex-direction: column;
     width: 100%;
-    padding-top: 80px;
+    padding-top: 10vh;
     justify-content: center;
     align-items: center;
 }
@@ -23,10 +22,16 @@
     color: black;
 }
 
+.productGridItem p, .productGridItem h3 {
+   margin: 0;
+   padding: 0;
+   padding-left: 10px;
+}
+
 .imageBox {
     overflow: hidden;
     border-radius: 20px;
-    border: 1px solid red;
+    border: 1px solid gray;
     width: 100%;
     aspect-ratio: 1;
 }

@@ -5,6 +5,7 @@ import ShopHomePage from './pages/ShopHomePage'
 import ShopProductsPage from './pages/ShopProductsPage';
 import AboutPage from './pages/AboutPage';
 import MyCartPage from './pages/MyCartPage';
+import './styles/General.css'
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import {
@@ -28,7 +29,7 @@ function App() {
   },[])
 
   return (
-    <>
+    <body>
     <Router>
       <Header cartStuff={cartItems} />
       <Routes>
@@ -40,7 +41,7 @@ function App() {
       </Routes>
       <Footer />
     </Router>
-    </>
+    </body>
   );
 }
 
