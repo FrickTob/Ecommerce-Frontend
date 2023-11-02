@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
+import '../styles/ShopDetailedPage.css'
 
 
 const ShopDetailedPage = ({cartItems, addCartItems}) => {
@@ -51,10 +52,11 @@ const ShopDetailedPage = ({cartItems, addCartItems}) => {
   }
 
   return (
-    <div>
-      <img alt='' src={product?.product_image}></img>
+    <div className='detailedPage'>
+      <img className='detailedImage' alt='' src={product?.product_image}></img>
       <h1>{product?.product_title}</h1>
       <p>{product?.product_description}</p>
+      <p>{product?.product_price}</p>
       <button onClick={addToCart}>Add to Cart</button>
     </div>
   )

@@ -6,8 +6,10 @@ import '../styles/ShopHomePage.css'
 const ShopHomePage = () => {
   return (
     <div className='homePage'>
-    <h1>Shop the Hottest clothes for less</h1>
-    <Link to={'/products/'}>Shop All Clothes</Link>
+      <div className='homePageCover'>
+        <h1>Shop the Hottest clothes for less</h1>
+        <Link className='allProductsHomepageLink' to={'/products/'}>Shop All Clothes</Link>
+      </div>
     </div>
   )
 }

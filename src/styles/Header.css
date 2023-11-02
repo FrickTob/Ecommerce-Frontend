@@ -1,21 +1,50 @@
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background-color: lightgray;
+}
+
 .topHeaderRow {
-    position: relative;
-    width: 100%;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.middleHeader {
-    left: 50%;
-    right: 50%;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 10vh;
 }
 
 .middleHeader * {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.cartLogo {
+    height: 40px;
+    width: 40px;
+}
+
+.cartLogoBox {
+    position: relative;
+}
+
+.cartNumItemsBubble {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
+    background-color: #ea2300;
+    color: black;
+    display: grid;
+    place-content: center;
+    aspect-ratio: 1;
+}
+
+.cartHeaderBox {
+    padding-right: 2vw;
+}
+.logoHeaderBox {
+    padding-left: 2vw;
 }
