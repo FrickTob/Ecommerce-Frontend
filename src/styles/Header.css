@@ -17,6 +17,12 @@
 .middleHeader * {
     margin-left: 10px;
     margin-right: 10px;
+    color: black;
+    font-size: larger;
+    text-decoration: none;
+}
+.middleHeader *:hover {
+    text-decoration: underline;
 }
 
 .cartLogo {
@@ -27,6 +33,9 @@
 .cartLogoBox {
     position: relative;
 }
+.cartLogoBox:hover {
+    opacity: .7;
+}
 
 .cartNumItemsBubble {
     position: absolute;
@@ -36,7 +45,7 @@
     width: 16px;
     border-radius: 8px;
     background-color: #ea2300;
-    color: black;
+    color: white;
     display: grid;
     place-content: center;
     aspect-ratio: 1;
@@ -47,4 +56,7 @@
 }
 .logoHeaderBox {
     padding-left: 2vw;
+}
+.logoHeaderBox:hover {
+    opacity: .7;
 }

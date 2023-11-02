@@ -20,7 +20,7 @@ const MyCartPage = ({cartItems, removeCartItems}) => {
     var currTotal = 0
     console.log('cart', cartItems)
     cartItems.forEach((item) => { currTotal += parseFloat(item[0]?.product_price) * item[1]})
-    setTotalPrice(currTotal)
+    setTotalPrice(currTotal.toFixed(2))
   }
 
   let removeItem = (id) => {
@@ -45,7 +45,7 @@ const MyCartPage = ({cartItems, removeCartItems}) => {
               <h3>{cartItem[0]?.product_title} {parseFloat(cartItem[0]?.product_price) * cartItem[1]}</h3>
             </div>
           ))}
-          <h3>{totalPrice}</h3>
+          <h3>{totalPrice === 0 ? "" : totalPrice}</h3>
         </div>
     </div>
   )
