@@ -1,1 +1,1 @@
-This is the frontend for my [Ecommerce Site](https://github.com/FrickTob/Full-Stack-Ecommerce-Site). Created using react, the site reads and writes data to the backend using a REST API with full CRUD functionality. 
+This is a frontend submodule for my [Full Stack Ecommerce Site](https://github.com/FrickTob/Full-Stack-Ecommerce-Site). Check out the readme there if you'd like to learn more about the project.
