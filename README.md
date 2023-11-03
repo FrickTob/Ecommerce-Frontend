@@ -1,1 +1,1 @@
-This is the frontend for the ECommerce Site. Created using react, the site reads and writes data to the backend which uses django for database management and the api.
+This is a frontend submodule for my [Full Stack Ecommerce Site](https://github.com/FrickTob/Full-Stack-Ecommerce-Site). Check out the readme there if you'd like to learn more about the project.
