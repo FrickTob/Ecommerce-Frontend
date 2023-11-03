@@ -53,11 +53,16 @@ const ShopDetailedPage = ({cartItems, addCartItems}) => {
 
   return (
     <div className='detailedPage'>
-      <img className='detailedImage' alt='' src={product?.product_image}></img>
-      <h1>{product?.product_title}</h1>
-      <p>{product?.product_description}</p>
-      <p>{product?.product_price}</p>
-      <button onClick={addToCart}>Add to Cart</button>
+      <div className='detailedItemBox'>
+        <img className='detailedImage' alt='' src={product?.product_image}></img>
+        <div className='detailedItemTitleBox'>
+          <h1>{product?.product_title}</h1>
+          <p>{product?.product_price}</p>
+        </div>
+        <div className='horizontalLine' />
+        <p>{product?.product_description}</p>
+        <button className='positiveButton' onClick={addToCart}>Add to Cart</button>
+      </div>
     </div>
   )
 }

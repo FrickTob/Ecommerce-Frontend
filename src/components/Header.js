@@ -44,7 +44,7 @@ const Header = ({cartStuff}) => {
         <Link className='cartHeaderBox' to={'/my-cart'}>
           <div className='cartLogoBox'>
             <img className='cartLogo' src={cartLogo} />
-            <div id='cartNumItemsBubble' className='cartNumItemsBubble'>{cartSize === 0 ? "" : cartSize}</div>
+            <div id='cartNumItemsBubble' className='cartNumItemsBubble'></div>
           </div>
         </Link>
       </div>

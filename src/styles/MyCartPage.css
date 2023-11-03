@@ -1,21 +1,29 @@
 .myCartPage {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding-top: 12vh;
+    padding-left: 10vw;
 }
+
+.myCartPage h2 {
+    width: 90vw;
+}
+
+.cartInfoBox {
+    display: flex;
+    width: 90vw;
+}
+
 .cartBox {
     width: 50%;
     min-height: 40%;
-    background-color: darkgray;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
     padding: 10px;
 }
+
 .subtotalBox {
     width: 30%;
     min-height: 20%;
-    background-color: lightgray;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
     padding: 10px;
 }

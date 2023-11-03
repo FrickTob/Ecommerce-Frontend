@@ -32,20 +32,25 @@ const MyCartPage = ({cartItems, removeCartItems}) => {
 
   return (
     <div className='myCartPage'>
-        <div className='cartBox'>
-            <h2>Your Cart: ({cartItems.length} items)</h2>
+        <h2>Your Cart: ({cartItems.length} items)</h2>
+        <div className='cartInfoBox'>
+          <div className='cartBox'>
+              {cartItems.map((cartItem) => (
+                <CartItem key={cartItem[0].id} item={cartItem[0]} quantity={cartItem[1]} onClick={() => removeItem(cartItem[0].id)}/>
+              ))}
+          </div>
+          <div className='subtotalBox'>
+            <h3>Summary</h3>
             {cartItems.map((cartItem) => (
-              <CartItem key={cartItem[0].id} item={cartItem[0]} quantity={cartItem[1]} onClick={() => removeItem(cartItem[0].id)}/>
+              <div key={cartItem[0].id}>
+                <p>{cartItem[0]?.product_title} x{cartItem[1]}  {parseFloat(cartItem[0]?.product_price) * cartItem[1]}</p>
+              </div>
             ))}
-        </div>
-        <div className='subtotalBox'>
-          <h3>Subtotal</h3>
-          {cartItems.map((cartItem) => (
-            <div key={cartItem[0].id}>
-              <h3>{cartItem[0]?.product_title} {parseFloat(cartItem[0]?.product_price) * cartItem[1]}</h3>
-            </div>
-          ))}
-          <h3>{totalPrice === 0 ? "" : totalPrice}</h3>
+            <div className='horizontalLine'></div>
+            <p>Total {totalPrice === 0 ? "" : totalPrice}</p>
+            <div className='horizontalLine'></div>
+            <button className='positiveButton'>Checkout</button>
+          </div>
         </div>
     </div>
   )
