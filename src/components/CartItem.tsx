@@ -1,7 +1,13 @@
 import React from 'react'
 import '../styles/CartItem.css'
 
-const CartItem = ({item, quantity, onClick}) => {
+interface CartItemProps {
+  item: any,
+  quantity : number,
+  onClick : () => void
+}
+
+const CartItem: React.FC<CartItemProps> = ({item, quantity, onClick}) => {
   return (
     <div className='cartItemBox'>
       <img className='cartItemImg' alt='' src={item.product_image}></img>

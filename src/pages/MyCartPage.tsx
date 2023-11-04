@@ -3,8 +3,13 @@ import '../styles/MyCartPage.css'
 import { useCookies } from 'react-cookie'
 import CartItem from '../components/CartItem'
 
-const MyCartPage = ({cartItems, removeCartItems}) => {
-  let [cookies, setCookie] = useCookies('cart')
+interface MyCartPageProps {
+  cartItems : Array<ProductAndQuantity>,
+  removeCartItems : React.Dispatch<ProductAndQuantity[]>
+}
+
+const MyCartPage : React.FC<MyCartPageProps> = ({cartItems, removeCartItems}) => {
+  let [cookies, setCookie] = useCookies(['cart'])
   let [totalPrice, setTotalPrice] = useState(0)
 
   useEffect(()=>{
@@ -19,12 +24,13 @@ const MyCartPage = ({cartItems, removeCartItems}) => {
   let updateTotalPrice = () => {
     var currTotal = 0
     console.log('cart', cartItems)
-    cartItems.forEach((item) => { currTotal += parseFloat(item[0]?.product_price) * item[1]})
-    setTotalPrice(currTotal.toFixed(2))
+    cartItems.forEach((item) => { currTotal += item.product.product_price * item.quantity})
+    setTotalPrice(currTotal)
   }
 
-  let removeItem = (id) => {
-    let currCart = cartItems.filter((cartItem) => cartItem[0].id !== id)
+  let removeItem = (id : number) => {
+    console.log("id")
+    let currCart = cartItems.filter((cartItem) => cartItem.product.id !== id)
     removeCartItems(currCart)
     setCookie('cart', currCart)
     updateTotalPrice()
@@ -36,14 +42,14 @@ const MyCartPage = ({cartItems, removeCartItems}) => {
         <div className='cartInfoBox'>
           <div className='cartBox'>
               {cartItems.map((cartItem) => (
-                <CartItem key={cartItem[0].id} item={cartItem[0]} quantity={cartItem[1]} onClick={() => removeItem(cartItem[0].id)}/>
+                <CartItem key={cartItem.product.id} item={cartItem.product} quantity={cartItem.quantity} onClick={() => removeItem(cartItem.product.id)}/>
               ))}
           </div>
           <div className='subtotalBox'>
             <h3>Summary</h3>
             {cartItems.map((cartItem) => (
-              <div key={cartItem[0].id}>
-                <p>{cartItem[0]?.product_title} x{cartItem[1]}  {parseFloat(cartItem[0]?.product_price) * cartItem[1]}</p>
+              <div key={cartItem.product.id}>
+                <p>{cartItem.product.product_title} x{cartItem.quantity}  {cartItem.product.product_price * cartItem.quantity}</p>
               </div>
             ))}
             <div className='horizontalLine'></div>

@@ -2,10 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import '../styles/ShopDetailedPage.css'
 
+interface ShopDetailedPageProps {
+  cartItems : Array<ProductAndQuantity>,
+  addCartItems : React.Dispatch<ProductAndQuantity[]>
+}
 
-const ShopDetailedPage = ({cartItems, addCartItems}) => {
-
-  let [product, setProduct] = useState()
+const ShopDetailedPage : React.FC<ShopDetailedPageProps> = ({cartItems, addCartItems}) => {
+  let startProduct : Product = {
+    id : -1,
+    product_title : "empty",
+    product_description : "empty",
+    product_price : -1,
+    product_quantity : -1,
+    product_image : "none"
+  }
+  let [product, setProduct] = useState(startProduct)
   let [cookies, setCookie] = useCookies(['cart'])
 
   useEffect(() => {
@@ -19,19 +30,19 @@ const ShopDetailedPage = ({cartItems, addCartItems}) => {
     var productIndex = -1
     for (var i = 0; i < cartItems.length; i++) {
       console.log('items', cartItems, product)
-      if (cartItems[i][0].id === product.id) {
+      if (cartItems[i].product.id === product.id) {
         productIndex = i
         break
       }
     }
     console.log('i', productIndex)
-    var currItems = []
+    var currItems : Array<ProductAndQuantity> = []
     if (productIndex === -1) {
-      currItems = [...cartItems, [product, 1]]
+      currItems = [...cartItems, {product: product, quantity: 1}]
     }
     else {
       currItems = [...cartItems]
-      currItems[productIndex][1] += 1
+      currItems[productIndex].quantity += 1
     }
     addCartItems(currItems)
     let itemsCookieStr = JSON.stringify(currItems)
@@ -48,6 +59,8 @@ const ShopDetailedPage = ({cartItems, addCartItems}) => {
 
     let response = await fetch('/api/store/' + itemNum + '/')
     let data = await response.json()
+
+    console.log("data", response.json)
     setProduct(data)
   }
 

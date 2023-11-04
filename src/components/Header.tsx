@@ -8,14 +8,39 @@ import storeLogo from '../media/redhead.png'
 import background from '../media/homepagebackground.jpg'
 
 
-const Header = ({cartStuff}) => {
+// product_title = models.CharField(max_length=200)
+// product_description = models.TextField()
+// product_price = models.FloatField()
+// product_quantity = models.IntegerField()
+// product_image = models.ImageField(null=True, upload_to="./")
+
+interface Product {
+  id : number,
+  product_title : String,
+  product_description : String,
+  product_price : number,
+  product_quantity : number,
+  product_image : String
+}
+
+interface ProductAndQuantity {
+  product : Product,
+  quantity : number
+}
+
+interface HeaderProps {
+  cartStuff : Array<ProductAndQuantity>
+}
+
+const Header : React.FC<HeaderProps> = ({cartStuff}) => {
 
   let [cartSize, setCartSize] = useState(0)
 
   const showBubble = () => {
-    const itemsBubble = document.getElementById('cartNumItemsBubble')
+    const itemsBubble : HTMLElement | null = document.getElementById('cartNumItemsBubble')
+    if (!itemsBubble) {return}
     if (cartStuff === undefined || cartStuff.length === 0) {
-      itemsBubble.style.visibility = 'hidden'
+      itemsBubble!.style.visibility = 'hidden'
     }
     else {
       itemsBubble.style.visibility = 'visible'

@@ -6,6 +6,7 @@ import ShopProductsPage from './pages/ShopProductsPage';
 import AboutPage from './pages/AboutPage';
 import MyCartPage from './pages/MyCartPage';
 import './styles/General.css'
+import './types/types'
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import {
@@ -16,8 +17,10 @@ import {
 
 function App() {
 
-  let [cartItems, setCartItems] = useState([])
-  let [cookies, setCookie] = useCookies('cart')
+
+  let startArr : Array<ProductAndQuantity> = []
+  let [cartItems, setCartItems] = useState(startArr)
+  let [cookies, setCookie] = useCookies(['cart'])
 
   useEffect(()=>{
     if (cookies.cart === undefined) {
@@ -29,11 +32,11 @@ function App() {
   },[])
 
   return (
-    <body>
+    <div className='body'>
     <Router>
       <Header cartStuff={cartItems} />
       <Routes>
-        <Route path="/" exact element={<ShopHomePage />} />
+        <Route path="/" element={<ShopHomePage />} />
         <Route path="/products" element={<ShopProductsPage />} />
         <Route path="/item/:id" element={<ShopDetailedPage cartItems={cartItems} addCartItems={setCartItems} />} />
         <Route path="/about" element={<AboutPage />} />
@@ -41,7 +44,7 @@ function App() {
       </Routes>
       <Footer />
     </Router>
-    </body>
+    </div>
   );
 }
 
