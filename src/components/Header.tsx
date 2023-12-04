@@ -29,10 +29,11 @@ interface ProductAndQuantity {
 }
 
 interface HeaderProps {
-  cartStuff : Array<ProductAndQuantity>
+  cartStuff : Array<ProductAndQuantity>,
+  setSearchText : React.Dispatch<React.SetStateAction<string>>
 }
 
-const Header : React.FC<HeaderProps> = ({cartStuff}) => {
+const Header : React.FC<HeaderProps> = ({cartStuff, setSearchText}) => {
 
   let [cartSize, setCartSize] = useState(0)
 
@@ -65,6 +66,12 @@ const Header : React.FC<HeaderProps> = ({cartStuff}) => {
         <div className='middleHeader'>
           <Link to={'/products'}>All Products</Link>
           <Link to={'/about'}>About</Link>
+          <div className='searchBarBox'>
+            <input onChange={(event) => setSearchText(event.target.value)} className='searchBar' type='text' placeholder='Search for products...'></input>
+            <Link className='searchIcon' to={'/products'}>
+              <img src='https://img.icons8.com/ios-filled/50/000000/search--v1.png'/>
+            </Link>
+          </div>
         </div>
         <Link className='cartHeaderBox' to={'/my-cart'}>
           <div className='cartLogoBox'>

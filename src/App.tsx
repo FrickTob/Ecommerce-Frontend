@@ -20,6 +20,7 @@ function App() {
 
   let startArr : Array<ProductAndQuantity> = []
   let [cartItems, setCartItems] = useState(startArr)
+  let [searchText, setSearchText] = useState("")
   let [cookies, setCookie] = useCookies(['cart'])
 
   useEffect(()=>{
@@ -34,10 +35,10 @@ function App() {
   return (
     <div className='body'>
     <Router>
-      <Header cartStuff={cartItems} />
+      <Header setSearchText={setSearchText} cartStuff={cartItems} />
       <Routes>
         <Route path="/" element={<ShopHomePage />} />
-        <Route path="/products" element={<ShopProductsPage />} />
+        <Route path="/products" element={<ShopProductsPage searchText={searchText} />} />
         <Route path="/item/:id" element={<ShopDetailedPage cartItems={cartItems} addCartItems={setCartItems} />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/my-cart" element={<MyCartPage cartItems={cartItems} removeCartItems={setCartItems} />} />

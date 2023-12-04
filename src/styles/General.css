@@ -1,5 +1,11 @@
 .body {
     margin: 0;
+    padding: 0;
+}
+
+div {
+    padding: 0;
+    margin: 0;
 }
 
 p, h1, h2, h3, a {
@@ -30,5 +36,5 @@ button {
 }
 
 .positiveButton:hover {
-    background-color: #afe1af;
+    background-color: rgb(175, 225, 175);
 }

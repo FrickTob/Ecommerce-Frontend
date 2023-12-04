@@ -3,7 +3,11 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import '../styles/ShopProductsPage.css'
 
-const ShopProductsPage = () => {
+interface ProductsPageProps {
+  searchText : String
+}
+
+const ShopProductsPage : React.FC<ProductsPageProps> = ({searchText}) => {
 
   let [products, setProducts] = useState(Array<Product>)
   
@@ -24,7 +28,7 @@ const ShopProductsPage = () => {
       {products.map((product) => (
         <Link to={'/item/' + product?.id} className="productGridItem" key={product?.id}>
           <div className="imageBox"><img alt="" src={product?.product_image} /></div>
-          <h3>{product?.product_title}</h3>
+          <h3>{searchText}</h3>
           <p>{product?.product_price}</p>
           </Link>))}
       </div>

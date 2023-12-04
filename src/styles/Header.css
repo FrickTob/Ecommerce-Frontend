@@ -2,6 +2,7 @@
     position: fixed;
     left: 0;
     right: 0;
+    top: 0;
     z-index: 3;
     background-color: lightgray;
 }
@@ -14,6 +15,11 @@
     height: 10vh;
 }
 
+.middleHeader {
+    display: flex;
+    align-items: center;
+}
+
 .middleHeader * {
     margin-left: 10px;
     margin-right: 10px;
@@ -24,6 +30,33 @@
 .middleHeader *:hover {
     text-decoration: underline;
 }
+
+.middleHeader {
+    display: flex;
+}
+
+.searchBarBox {
+    position: relative;
+    width: fit-content;
+}
+.searchBar:hover {
+    text-decoration: none;
+}
+.searchBar {
+    border-radius: 10px;
+    height: 5vh;
+}
+
+.searchIcon {
+    position: absolute;
+    right: 5%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 3vh;
+    opacity: .7;
+}
+
 
 .cartLogo {
     height: 40px;
