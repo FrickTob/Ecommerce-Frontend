@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { KeyboardEventHandler } from 'react'
 import '../styles/Header.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import cartLogo from '../media/cart.svg'
 import storeLogo from '../media/redhead.png'
 import background from '../media/homepagebackground.jpg'
+import { KeyboardEvent } from 'react'
 
 
 // product_title = models.CharField(max_length=200)
@@ -36,6 +37,7 @@ interface HeaderProps {
 const Header : React.FC<HeaderProps> = ({cartStuff, setSearchText}) => {
 
   let [cartSize, setCartSize] = useState(0)
+  let navigate = useNavigate()
 
   const showBubble = () => {
     const itemsBubble : HTMLElement | null = document.getElementById('cartNumItemsBubble')
@@ -57,7 +59,11 @@ const Header : React.FC<HeaderProps> = ({cartStuff, setSearchText}) => {
     showBubble()
   },[cartStuff])
 
-
+  let submitSearch : KeyboardEventHandler = (e : KeyboardEvent) => {
+    if (e.key === "Enter") {
+      navigate('/products')
+    }
+  }
 
   return (
     <div className='header'>
@@ -67,9 +73,9 @@ const Header : React.FC<HeaderProps> = ({cartStuff, setSearchText}) => {
           <Link to={'/products'}>All Products</Link>
           <Link to={'/about'}>About</Link>
           <div className='searchBarBox'>
-            <input onChange={(event) => setSearchText(event.target.value)} className='searchBar' type='text' placeholder='Search for products...'></input>
+            <input onKeyDown={submitSearch} onChange={(event) => setSearchText(event.target.value)} className='searchBar' type='text' placeholder='Search for products...'></input>
             <Link className='searchIcon' to={'/products'}>
-              <img src='https://img.icons8.com/ios-filled/50/000000/search--v1.png'/>
+              <img className='searchIconImg' src='https://img.icons8.com/ios-filled/50/000000/search--v1.png'/>
             </Link>
           </div>
         </div>

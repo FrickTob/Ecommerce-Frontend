@@ -49,12 +49,15 @@
 
 .searchIcon {
     position: absolute;
-    right: 5%;
+    right: 2%;
     top: 0;
     bottom: 0;
     margin: auto;
-    height: 3vh;
     opacity: .7;
+}
+
+.searchIconImg {
+    height: 100%;
 }
 
 

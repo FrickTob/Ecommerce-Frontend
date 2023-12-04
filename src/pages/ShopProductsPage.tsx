@@ -16,7 +16,7 @@ const ShopProductsPage : React.FC<ProductsPageProps> = ({searchText}) => {
   },[])
 
   let getProducts = async () => {
-    let response = await fetch('/api/store/')
+    let response = await fetch('/api/store/?search=' + searchText)
     let data = await response.json()
     setProducts(data)
   }
@@ -28,7 +28,7 @@ const ShopProductsPage : React.FC<ProductsPageProps> = ({searchText}) => {
       {products.map((product) => (
         <Link to={'/item/' + product?.id} className="productGridItem" key={product?.id}>
           <div className="imageBox"><img alt="" src={product?.product_image} /></div>
-          <h3>{searchText}</h3>
+          <h3>{product?.product_title}</h3>
           <p>{product?.product_price}</p>
           </Link>))}
       </div>
