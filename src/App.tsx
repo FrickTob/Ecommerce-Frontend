@@ -35,7 +35,7 @@ function App() {
   return (
     <div className='body'>
     <Router>
-      <Header setSearchText={setSearchText} cartStuff={cartItems} />
+      <Header setSearchText={setSearchText} searchText={searchText} cartStuff={cartItems} />
       <Routes>
         <Route path="/" element={<ShopHomePage />} />
         <Route path="/products" element={<ShopProductsPage searchText={searchText} />} />

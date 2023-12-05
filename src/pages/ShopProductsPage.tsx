@@ -13,8 +13,9 @@ const ShopProductsPage : React.FC<ProductsPageProps> = ({searchText}) => {
   
   useEffect(() => {
     getProducts()
-  },[])
+  },[searchText])
 
+  
   let getProducts = async () => {
     let response = await fetch('/api/store/?search=' + searchText)
     let data = await response.json()

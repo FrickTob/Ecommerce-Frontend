@@ -1,4 +1,4 @@
-import React, { KeyboardEventHandler } from 'react'
+import React, { KeyboardEventHandler, MouseEventHandler } from 'react'
 import '../styles/Header.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -31,13 +31,15 @@ interface ProductAndQuantity {
 
 interface HeaderProps {
   cartStuff : Array<ProductAndQuantity>,
+  searchText : string,
   setSearchText : React.Dispatch<React.SetStateAction<string>>
 }
 
-const Header : React.FC<HeaderProps> = ({cartStuff, setSearchText}) => {
+const Header : React.FC<HeaderProps> = ({cartStuff, searchText, setSearchText}) => {
 
   let [cartSize, setCartSize] = useState(0)
   let navigate = useNavigate()
+  let searchBar = document.getElementById('searchBar') as HTMLInputElement
 
   const showBubble = () => {
     const itemsBubble : HTMLElement | null = document.getElementById('cartNumItemsBubble')
@@ -59,10 +61,20 @@ const Header : React.FC<HeaderProps> = ({cartStuff, setSearchText}) => {
     showBubble()
   },[cartStuff])
 
-  let submitSearch : KeyboardEventHandler = (e : KeyboardEvent) => {
-    if (e.key === "Enter") {
+  let handleSearchTyping : KeyboardEventHandler = (e : KeyboardEvent) => {
+    if (e.key !== "Enter") return
+    submitSearch()
+  }
+  let submitSearch = () => {
+    if (searchBar == null) return
       navigate('/products')
-    }
+      setSearchText(searchBar.value)
+  }
+
+  let resetSearch = () => {
+    if (searchBar == null) return
+    searchBar.value = ''
+    setSearchText('')
   }
 
   return (
@@ -70,13 +82,11 @@ const Header : React.FC<HeaderProps> = ({cartStuff, setSearchText}) => {
       <div className='topHeaderRow'>
         <Link className='logoHeaderBox' to={'/'}><img src={storeLogo}/></Link>
         <div className='middleHeader'>
-          <Link to={'/products'}>All Products</Link>
-          <Link to={'/about'}>About</Link>
+          <Link to={'/products'} onClick={(e) => resetSearch()}>All Products</Link>
+          <Link to={'/about'} onClick={(e) => resetSearch()}>About</Link>
           <div className='searchBarBox'>
-            <input onKeyDown={submitSearch} onChange={(event) => setSearchText(event.target.value)} className='searchBar' type='text' placeholder='Search for products...'></input>
-            <Link className='searchIcon' to={'/products'}>
-              <img className='searchIconImg' src='https://img.icons8.com/ios-filled/50/000000/search--v1.png'/>
-            </Link>
+            <input defaultValue={searchText} id='searchBar' onKeyDown={handleSearchTyping} className='searchBar' type='text' placeholder='Search for products...'></input>
+            <img onClick={submitSearch} className='searchIconImg' src='https://img.icons8.com/ios-filled/50/000000/search--v1.png'/>
           </div>
         </div>
         <Link className='cartHeaderBox' to={'/my-cart'}>
