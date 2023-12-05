@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react"
 import React from 'react'
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import '../styles/ShopProductsPage.css'
 
 interface ProductsPageProps {
-  searchText : String
 }
 
-const ShopProductsPage : React.FC<ProductsPageProps> = ({searchText}) => {
+const ShopProductsPage : React.FC<ProductsPageProps> = () => {
 
   let [products, setProducts] = useState(Array<Product>)
+  let [searchParams, setSearchParams] = useSearchParams()
   
   useEffect(() => {
     getProducts()
-  },[searchText])
+  },[searchParams])
 
   
   let getProducts = async () => {
-    let response = await fetch('/api/store/?search=' + searchText)
+    let searchString = searchParams.get('search')
+    if (searchString == null) searchString = ""
+    let response = await fetch('/api/store/?search=' + searchString)
     let data = await response.json()
     setProducts(data)
   }

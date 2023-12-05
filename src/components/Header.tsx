@@ -1,12 +1,13 @@
 import React, { KeyboardEventHandler, MouseEventHandler } from 'react'
 import '../styles/Header.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, SetURLSearchParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import cartLogo from '../media/cart.svg'
 import storeLogo from '../media/redhead.png'
 import background from '../media/homepagebackground.jpg'
 import { KeyboardEvent } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 
 // product_title = models.CharField(max_length=200)
@@ -38,6 +39,7 @@ interface HeaderProps {
 const Header : React.FC<HeaderProps> = ({cartStuff, searchText, setSearchText}) => {
 
   let [cartSize, setCartSize] = useState(0)
+  let [searchParams, setSearchParams] = useSearchParams()
   let navigate = useNavigate()
   let searchBar = document.getElementById('searchBar') as HTMLInputElement
 
@@ -69,12 +71,15 @@ const Header : React.FC<HeaderProps> = ({cartStuff, searchText, setSearchText}) 
     if (searchBar == null) return
       navigate('/products')
       setSearchText(searchBar.value)
+      console.log(searchBar.value)
+      setSearchParams({"search" : searchBar.value})
   }
 
   let resetSearch = () => {
     if (searchBar == null) return
     searchBar.value = ''
     setSearchText('')
+    setSearchParams({})
   }
 
   return (
