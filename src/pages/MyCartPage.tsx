@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { SetStateAction, useEffect, useState } from 'react'
 import '../styles/MyCartPage.css'
 import { useCookies } from 'react-cookie'
 import CartItem from '../components/CartItem'
@@ -6,9 +6,10 @@ import CartItem from '../components/CartItem'
 interface MyCartPageProps {
   cartItems : Array<ProductAndQuantity>,
   removeCartItems : React.Dispatch<ProductAndQuantity[]>
+  setIsLoading : React.Dispatch<SetStateAction<boolean>>
 }
 
-const MyCartPage : React.FC<MyCartPageProps> = ({cartItems, removeCartItems}) => {
+const MyCartPage : React.FC<MyCartPageProps> = ({cartItems, removeCartItems, setIsLoading}) => {
   let [cookies, setCookie] = useCookies(['cart'])
   let [totalPrice, setTotalPrice] = useState(0)
 
@@ -36,6 +37,27 @@ const MyCartPage : React.FC<MyCartPageProps> = ({cartItems, removeCartItems}) =>
     updateTotalPrice()
   }
 
+  let handleCheckout = async () => {
+    if (cartItems.length === 0) return
+    let itemsString = JSON.stringify(cartItems)
+    setIsLoading(true)
+    let response = await fetch('/api/store/checkout/', {
+      method: 'PUT',
+      body: itemsString
+    })
+    let data = await response.json()
+    clearCart()
+    setIsLoading(false)
+    removeCartItems([])
+    setCookie('cart', [])
+    updateTotalPrice()
+    alert(data)
+  }
+
+  let clearCart = () => {
+    
+  }
+
   return (
     <div className='myCartPage'>
         <h2>Your Cart: ({cartItems.length} items)</h2>
@@ -55,7 +77,7 @@ const MyCartPage : React.FC<MyCartPageProps> = ({cartItems, removeCartItems}) =>
             <div className='horizontalLine'></div>
             <p>Total {totalPrice === 0 ? "" : totalPrice}</p>
             <div className='horizontalLine'></div>
-            <button className='positiveButton'>Checkout</button>
+            <button className='positiveButton' onClick={handleCheckout}>Checkout</button>
           </div>
         </div>
     </div>
