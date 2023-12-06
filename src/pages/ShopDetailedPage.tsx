@@ -5,9 +5,10 @@ import '../styles/ShopDetailedPage.css'
 interface ShopDetailedPageProps {
   cartItems : Array<ProductAndQuantity>,
   addCartItems : React.Dispatch<ProductAndQuantity[]>
+  setIsLoading : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ShopDetailedPage : React.FC<ShopDetailedPageProps> = ({cartItems, addCartItems}) => {
+const ShopDetailedPage : React.FC<ShopDetailedPageProps> = ({cartItems, addCartItems, setIsLoading}) => {
   let startProduct : Product = {
     id : -1,
     product_title : "empty",
@@ -56,10 +57,10 @@ const ShopDetailedPage : React.FC<ShopDetailedPageProps> = ({cartItems, addCartI
     let fetchURL = document.URL.split('/')
     let itemIndex = fetchURL.findIndex((str) => {return str === 'item'})
     let itemNum = fetchURL[itemIndex + 1]
-
+    setIsLoading(true)
     let response = await fetch('/api/store/' + itemNum + '/')
     let data = await response.json()
-
+    setIsLoading(false)
     console.log("data", response.json)
     setProduct(data)
   }

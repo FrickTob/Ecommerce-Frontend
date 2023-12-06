@@ -27,9 +27,6 @@
     font-size: larger;
     text-decoration: none;
 }
-.middleHeader *:hover {
-    text-decoration: underline;
-}
 
 .middleHeader {
     display: flex;
@@ -38,6 +35,8 @@
 .searchBarBox {
     position: relative;
     width: fit-content;
+    display: flex;
+    align-items: center;
 }
 .searchBar:hover {
     text-decoration: none;
@@ -45,19 +44,18 @@
 .searchBar {
     border-radius: 10px;
     height: 5vh;
+    
 }
 
-.searchIcon {
+
+.searchIconImg {
     position: absolute;
-    right: 2%;
+    right: 5%;
     top: 0;
     bottom: 0;
     margin: auto;
     opacity: .7;
-}
-
-.searchIconImg {
-    height: 100%;
+    height: 60%;
 }
 
 

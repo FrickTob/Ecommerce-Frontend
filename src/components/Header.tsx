@@ -32,11 +32,11 @@ interface ProductAndQuantity {
 
 interface HeaderProps {
   cartStuff : Array<ProductAndQuantity>,
-  searchText : string,
-  setSearchText : React.Dispatch<React.SetStateAction<string>>
+  //searchText : string,
+  //setSearchText : React.Dispatch<React.SetStateAction<string>>
 }
 
-const Header : React.FC<HeaderProps> = ({cartStuff, searchText, setSearchText}) => {
+const Header : React.FC<HeaderProps> = ({cartStuff}) => {
 
   let [cartSize, setCartSize] = useState(0)
   let [searchParams, setSearchParams] = useSearchParams()
@@ -69,16 +69,17 @@ const Header : React.FC<HeaderProps> = ({cartStuff, searchText, setSearchText}) 
   }
   let submitSearch = () => {
     if (searchBar == null) return
-      navigate('/products')
-      setSearchText(searchBar.value)
-      console.log(searchBar.value)
       setSearchParams({"search" : searchBar.value})
+      if (searchBar.value == '') 
+        navigate('/products')
+      else 
+        navigate({pathname: '/products',
+                  search: '?search=' + searchBar.value})
   }
 
   let resetSearch = () => {
     if (searchBar == null) return
     searchBar.value = ''
-    setSearchText('')
     setSearchParams({})
   }
 
@@ -90,7 +91,7 @@ const Header : React.FC<HeaderProps> = ({cartStuff, searchText, setSearchText}) 
           <Link to={'/products'} onClick={(e) => resetSearch()}>All Products</Link>
           <Link to={'/about'} onClick={(e) => resetSearch()}>About</Link>
           <div className='searchBarBox'>
-            <input defaultValue={searchText} id='searchBar' onKeyDown={handleSearchTyping} className='searchBar' type='text' placeholder='Search for products...'></input>
+            <input id='searchBar' onKeyDown={handleSearchTyping} className='searchBar' type='text' placeholder='Search for products...'></input>
             <img onClick={submitSearch} className='searchIconImg' src='https://img.icons8.com/ios-filled/50/000000/search--v1.png'/>
           </div>
         </div>

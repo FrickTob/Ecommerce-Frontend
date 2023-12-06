@@ -4,9 +4,10 @@ import { Link, useSearchParams } from "react-router-dom"
 import '../styles/ShopProductsPage.css'
 
 interface ProductsPageProps {
+  setIsLoading : React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ShopProductsPage : React.FC<ProductsPageProps> = () => {
+const ShopProductsPage : React.FC<ProductsPageProps> = ({setIsLoading}) => {
 
   let [products, setProducts] = useState(Array<Product>)
   let [searchParams, setSearchParams] = useSearchParams()
@@ -19,8 +20,10 @@ const ShopProductsPage : React.FC<ProductsPageProps> = () => {
   let getProducts = async () => {
     let searchString = searchParams.get('search')
     if (searchString == null) searchString = ""
+    setIsLoading(true)
     let response = await fetch('/api/store/?search=' + searchString)
     let data = await response.json()
+    setIsLoading(false)
     setProducts(data)
   }
 

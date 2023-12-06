@@ -9,11 +9,13 @@ import './styles/General.css'
 import './types/types'
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import {Grid} from 'react-loader-spinner'
 import {
   BrowserRouter as Router,
   Route,
   Routes,
 } from "react-router-dom"
+import { isJsxClosingFragment } from 'typescript';
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
   let [cartItems, setCartItems] = useState(startArr)
   let [searchText, setSearchText] = useState("")
   let [cookies, setCookie] = useCookies(['cart'])
+  let [isLoading, setIsLoading] = useState(false)
 
   useEffect(()=>{
     if (cookies.cart === undefined) {
@@ -33,19 +36,27 @@ function App() {
   },[])
 
   return (
-    <div className='body'>
+    <>
+    <Grid
+      height="80"
+      width="80"
+      color="#4fa94d"
+      ariaLabel="grid-loading"
+      radius="12.5"
+      wrapperClass="loadingSpinner"
+      visible={isLoading}/>
     <Router>
-      <Header setSearchText={setSearchText} searchText={searchText} cartStuff={cartItems} />
+      <Header cartStuff={cartItems} />
       <Routes>
         <Route path="/" element={<ShopHomePage />} />
-        <Route path="/products" element={<ShopProductsPage />} />
-        <Route path="/item/:id" element={<ShopDetailedPage cartItems={cartItems} addCartItems={setCartItems} />} />
+        <Route path="/products" element={<ShopProductsPage setIsLoading={setIsLoading} />} />
+        <Route path="/item/:id" element={<ShopDetailedPage cartItems={cartItems} addCartItems={setCartItems} setIsLoading={setIsLoading} />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/my-cart" element={<MyCartPage cartItems={cartItems} removeCartItems={setCartItems} />} />
       </Routes>
       <Footer />
     </Router>
-    </div>
+    </>
   );
 }
 

@@ -38,3 +38,16 @@ button {
 .positiveButton:hover {
     background-color: rgb(175, 225, 175);
 }
+
+.loadingSpinner {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    background-color: rgba(100, 100, 100, .6);
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 10;
+}
