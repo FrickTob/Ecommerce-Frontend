@@ -9,13 +9,13 @@ import './styles/General.css'
 import './types/types'
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import {Grid} from 'react-loader-spinner'
 import {
   BrowserRouter as Router,
   Route,
   Routes,
 } from "react-router-dom"
 import { isJsxClosingFragment } from 'typescript';
+import { Grid } from 'react-loader-spinner';
 
 function App() {
 
