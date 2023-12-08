@@ -5,6 +5,7 @@ import ShopHomePage from './pages/ShopHomePage'
 import ShopProductsPage from './pages/ShopProductsPage';
 import AboutPage from './pages/AboutPage';
 import MyCartPage from './pages/MyCartPage';
+import ShopCheckoutPage from './pages/ShopCheckoutPage';
 import './styles/General.css'
 import './types/types'
 import { useEffect, useState } from 'react';
@@ -53,6 +54,7 @@ function App() {
         <Route path="/item/:id" element={<ShopDetailedPage cartItems={cartItems} addCartItems={setCartItems} setIsLoading={setIsLoading} />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/my-cart" element={<MyCartPage cartItems={cartItems} removeCartItems={setCartItems} setIsLoading={setIsLoading} />} />
+        <Route path="/checkout" element={<ShopCheckoutPage />} />
       </Routes>
       <Footer />
     </Router>

@@ -1,0 +1,70 @@
+.checkoutPage {
+    margin-top: 15vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+
+.orderInfoSide {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h4 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.nameLine, .expCVV {
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+}
+.cityStateZip {
+        display: grid; 
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 10px;
+}
+
+input[type="submit"] {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color .15s ease, background-color .15s ease;
+}
+
+input[type="submit"]:hover {
+    color: #fff;
+    background-color: #45a049;
+}
+
+.invalidInput {
+    border: 1px solid red;
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+    .container {
+        width: 90%;
+    }
+}

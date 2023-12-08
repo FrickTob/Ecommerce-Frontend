@@ -2,10 +2,8 @@ import React, { KeyboardEventHandler, MouseEventHandler } from 'react'
 import '../styles/Header.css'
 import { Link, SetURLSearchParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie'
 import cartLogo from '../media/cart.svg'
 import storeLogo from '../media/redhead.png'
-import background from '../media/homepagebackground.jpg'
 import { KeyboardEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
@@ -15,6 +13,7 @@ import { useSearchParams } from 'react-router-dom'
 // product_price = models.FloatField()
 // product_quantity = models.IntegerField()
 // product_image = models.ImageField(null=True, upload_to="./")
+
 
 interface Product {
   id : number,
@@ -70,7 +69,7 @@ const Header : React.FC<HeaderProps> = ({cartStuff}) => {
   let submitSearch = () => {
     if (searchBar == null) return
       setSearchParams({"search" : searchBar.value})
-      if (searchBar.value == '') 
+      if (searchBar.value === '') 
         navigate('/products')
       else 
         navigate({pathname: '/products',
@@ -84,20 +83,20 @@ const Header : React.FC<HeaderProps> = ({cartStuff}) => {
   }
 
   return (
-    <div className='header'>
+    <div className='header' id='header'>
       <div className='topHeaderRow'>
-        <Link className='logoHeaderBox' to={'/'}><img src={storeLogo}/></Link>
+        <Link className='logoHeaderBox' to={'/'}><img alt='' src={storeLogo}/></Link>
         <div className='middleHeader'>
           <Link to={'/products'} onClick={(e) => resetSearch()}>All Products</Link>
-          <Link to={'/about'} onClick={(e) => resetSearch()}>About</Link>
+          <Link to={'/checkout'} onClick={(e) => resetSearch()}>About</Link>
           <div className='searchBarBox'>
             <input id='searchBar' onKeyDown={handleSearchTyping} className='searchBar' type='text' placeholder='Search for products...'></input>
-            <img onClick={submitSearch} className='searchIconImg' src='https://img.icons8.com/ios-filled/50/000000/search--v1.png'/>
+            <img alt='searchIcon' onClick={submitSearch} className='searchIconImg' src='https://img.icons8.com/ios-filled/50/000000/search--v1.png'/>
           </div>
         </div>
         <Link className='cartHeaderBox' to={'/my-cart'}>
           <div className='cartLogoBox'>
-            <img className='cartLogo' src={cartLogo} />
+            <img alt='cartLogo' className='cartLogo' src={cartLogo} />
             <div id='cartNumItemsBubble' className='cartNumItemsBubble'></div>
           </div>
         </Link>
