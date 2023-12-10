@@ -88,7 +88,7 @@ const Header : React.FC<HeaderProps> = ({cartStuff}) => {
         <Link className='logoHeaderBox' to={'/'}><img alt='' src={storeLogo}/></Link>
         <div className='middleHeader'>
           <Link to={'/products'} onClick={(e) => resetSearch()}>All Products</Link>
-          <Link to={'/checkout'} onClick={(e) => resetSearch()}>About</Link>
+          <Link to={'/about'} onClick={(e) => resetSearch()}>About</Link>
           <div className='searchBarBox'>
             <input id='searchBar' onKeyDown={handleSearchTyping} className='searchBar' type='text' placeholder='Search for products...'></input>
             <img alt='searchIcon' onClick={submitSearch} className='searchIconImg' src='https://img.icons8.com/ios-filled/50/000000/search--v1.png'/>

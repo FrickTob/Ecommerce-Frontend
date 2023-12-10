@@ -16,16 +16,49 @@ const PaymentForm : React.FC<PaymentFormProps> = ({handlePaymentSubmit, showForm
     }
 },[showForm])
 
+  let validateCardNumberInput = (e : React.KeyboardEvent<HTMLInputElement>) => {
+    // only allow numeric input and add - automatically
+    if (e.key === 'Backspace' || 'Tab') return
+    if (!isFinite(Number(e.key))) {
+      e.preventDefault()
+      return
+    }
+    let input = e.target as HTMLInputElement
+    let inputVal = input.value
+  }
+  let validateExpirationInput = (e : React.KeyboardEvent<HTMLInputElement>) => {
+    // only allow numeric input and add / automatically
+    if (e.key === 'Backspace' || 'Tab') return
+    if (!isFinite(Number(e.key))) {
+      e.preventDefault()
+      return
+    }
+    let input = e.target as HTMLInputElement
+    let inputVal = input.value
+    if (inputVal.length === 2) {
+      input.value = inputVal + '/'
+    }
+  }
+  let validateCVVInput = (e : React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Backspace' || 'Tab') return
+    if (!isFinite(Number(e.key))) {
+      e.preventDefault()
+      return
+    }
+  }
+
   return (
     <form id="paymentForm" onSubmit={handlePaymentSubmit}>
     <div className="payment-grid">
         <label>Card Number:</label>
-        <input type="text" id="cardNumber" name="cardNumber" required />
+        <input type="text" onKeyDown={validateCardNumberInput} id="cardNumber" name="cardNumber" maxLength={19}  />
+        <label>Name on Card:</label>
+        <input type="text" id="nameOnCard" name="nameOnCard"  />
         <div className='expCVV'>
             <label>Expiration Date:</label>
             <label>CVV:</label>
-            <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YYYY" required />
-            <input type="text" id="cvv" name="cvv" required />
+            <input type="text" onKeyDown={validateExpirationInput} id="expirationDate" name="expirationDate" placeholder="MM/YYYY" maxLength={7}  />
+            <input type="text" onKeyDown={validateCVVInput} id="cvv" name="cvv" maxLength={3}  />
         </div>
     </div>
 

@@ -54,7 +54,7 @@ function App() {
         <Route path="/item/:id" element={<ShopDetailedPage cartItems={cartItems} addCartItems={setCartItems} setIsLoading={setIsLoading} />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/my-cart" element={<MyCartPage cartItems={cartItems} removeCartItems={setCartItems} setIsLoading={setIsLoading} />} />
-        <Route path="/checkout" element={<ShopCheckoutPage />} />
+        <Route path="/checkout" element={<ShopCheckoutPage cartItems={cartItems} removeCartItems={setCartItems} setIsLoading={setIsLoading} />} />
       </Routes>
       <Footer />
     </Router>

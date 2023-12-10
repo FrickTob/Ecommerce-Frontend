@@ -2,6 +2,7 @@ import React, { SetStateAction, useEffect, useState } from 'react'
 import '../styles/MyCartPage.css'
 import { useCookies } from 'react-cookie'
 import CartItem from '../components/CartItem'
+import { useNavigate } from 'react-router-dom'
 
 interface MyCartPageProps {
   cartItems : Array<ProductAndQuantity>,
@@ -12,15 +13,20 @@ interface MyCartPageProps {
 const MyCartPage : React.FC<MyCartPageProps> = ({cartItems, removeCartItems, setIsLoading}) => {
   let [cookies, setCookie] = useCookies(['cart'])
   let [totalPrice, setTotalPrice] = useState(0)
+  let navigate = useNavigate()
 
   useEffect(()=>{
     if (cartItems != null && cartItems.length !== 0) {
       updateTotalPrice()
+      let checkoutBtn = document.getElementById('checkoutBtn') as HTMLButtonElement
+      checkoutBtn.style.display = 'block'
     }
     if (cartItems.length === 0) {
       setTotalPrice(0)
+      let checkoutBtn = document.getElementById('checkoutBtn') as HTMLButtonElement
+      checkoutBtn.style.display = 'none'
     }
-},[cartItems])
+  },[cartItems])
 
   let updateTotalPrice = () => {
     var currTotal = 0
@@ -37,6 +43,10 @@ const MyCartPage : React.FC<MyCartPageProps> = ({cartItems, removeCartItems, set
     updateTotalPrice()
   }
 
+  let goToCheckout = () => {
+    navigate('/checkout')
+  }
+
   let handleCheckout = async () => {
     if (cartItems.length === 0) return
     let itemsString = JSON.stringify(cartItems)
@@ -46,16 +56,11 @@ const MyCartPage : React.FC<MyCartPageProps> = ({cartItems, removeCartItems, set
       body: itemsString
     })
     let data = await response.json()
-    clearCart()
     setIsLoading(false)
     removeCartItems([])
     setCookie('cart', [])
     updateTotalPrice()
     alert(data)
-  }
-
-  let clearCart = () => {
-    
   }
 
   return (
@@ -77,7 +82,7 @@ const MyCartPage : React.FC<MyCartPageProps> = ({cartItems, removeCartItems, set
             <div className='horizontalLine'></div>
             <p>Total {totalPrice === 0 ? "" : totalPrice}</p>
             <div className='horizontalLine'></div>
-            <button className='positiveButton' onClick={handleCheckout}>Checkout</button>
+            <button className={'positiveButton'} id='checkoutBtn' onClick={goToCheckout}>Checkout</button>
           </div>
         </div>
     </div>

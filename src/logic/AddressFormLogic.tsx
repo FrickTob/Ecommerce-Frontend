@@ -2,7 +2,7 @@
 /// change form validation to its own function so you can check it after every update
 
 
-class FormLogic {
+class AddressFormLogic {
     invalidInputs : Array<string>
     validForm : boolean = false
 
@@ -42,4 +42,4 @@ class FormLogic {
     }
 }
 
-export default FormLogic
+export default AddressFormLogic
