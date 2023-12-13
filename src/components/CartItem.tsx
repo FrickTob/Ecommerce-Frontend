@@ -2,12 +2,13 @@ import React from 'react'
 import '../styles/CartItem.css'
 
 interface CartItemProps {
-  item: any,
+  item: Product,
   quantity : number,
-  onClick : () => void
+  onClick : () => void,
+  showButton : boolean
 }
 
-const CartItem: React.FC<CartItemProps> = ({item, quantity, onClick}) => {
+const CartItem: React.FC<CartItemProps> = ({item, quantity, onClick, showButton}) => {
   return (
     <div className='cartItemBox'>
       <img className='cartItemImg' alt='' src={item.product_image}></img>
@@ -16,7 +17,7 @@ const CartItem: React.FC<CartItemProps> = ({item, quantity, onClick}) => {
         <p>{item?.product_description}</p>
         <p>Qty: {quantity}</p>
         <p>Price: {item?.product_price}</p>
-        <button className='negativeButton' onClick={onClick}>Remove</button>
+        {showButton ? <button className='negativeButton' onClick={onClick}>Remove</button> : null}
       </div>
     </div>
   )
