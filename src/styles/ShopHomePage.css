@@ -1,8 +1,16 @@
+.homePage {
+    height: 90vh;
+    margin: none;
+    padding: none;
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .homePage * {
-    padding-top: 10vh;
     color: black;
-    width: 100%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -11,11 +19,15 @@
     cursor: default;
 }
 
+
+.homePage button {
+    padding: 5px;
+}
+
 .allProductsHomepageLink {
-    padding: 0;
+    text-decoration: none;
 }
 
 .allProductsHomepageLink:hover {
-    color: gray;
     cursor: pointer;
 }

@@ -7,7 +7,7 @@ const ShopHomePage = () => {
   return (
     <div className='homePage'>
       <h1>Shop the Hottest clothes for less</h1>
-      <Link className='allProductsHomepageLink' to={'/products/'}>Shop All Clothes</Link>
+      <button className='positiveButton'><Link className='allProductsHomepageLink' to={'/products/'}>Shop All Clothes</Link></button>
     </div>
   )
 }
