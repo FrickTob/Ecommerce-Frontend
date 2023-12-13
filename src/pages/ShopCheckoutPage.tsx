@@ -6,6 +6,8 @@ import AddressFormLogic from '../logic/AddressFormLogic'
 import PaymentFormLogic from '../logic/PaymentFormLogic'
 import CheckoutOrderSummary from '../components/CheckoutOrderSummary'
 import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
+import CartItem from '../components/CartItem'
 
 interface ShopCheckoutPageProps {
   cartItems : Array<ProductAndQuantity>,
@@ -116,8 +118,9 @@ const ShopCheckoutPage : React.FC<ShopCheckoutPageProps> = ({cartItems, removeCa
           <button onClick={handleCheckout} className='submitBtn' id='submitOrderButton'>Submit Order</button>
         </div>
         <div className='orderSummarySide'>
+          <h4>Your Cart</h4>
           {cartItems.map((item) => (
-            <div>{item.product.product_title}</div>
+            <CartItem item={item.product} quantity={item.quantity} onClick={() => {}} showButton={false} />
           ))}
         </div>
     </div>

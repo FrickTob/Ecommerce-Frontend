@@ -15,7 +15,6 @@ import {
   Route,
   Routes,
 } from "react-router-dom"
-import { isJsxClosingFragment } from 'typescript';
 import { Grid } from 'react-loader-spinner';
 
 function App() {

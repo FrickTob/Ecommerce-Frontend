@@ -69,7 +69,7 @@ const MyCartPage : React.FC<MyCartPageProps> = ({cartItems, removeCartItems, set
         <div className='cartInfoBox'>
           <div className='cartBox'>
               {cartItems.map((cartItem) => (
-                <CartItem key={cartItem.product.id} item={cartItem.product} quantity={cartItem.quantity} onClick={() => removeItem(cartItem.product.id)}/>
+                <CartItem key={cartItem.product.id} item={cartItem.product} quantity={cartItem.quantity} onClick={() => removeItem(cartItem.product.id)} showButton={true}/>
               ))}
           </div>
           <div className='subtotalBox'>
